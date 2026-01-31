@@ -19,22 +19,22 @@ export function hasPugTemplate(content) {
 
 export function extractPugTemplate(content) {
   const templateMatch = content.match(/<template\s+lang=["']pug["']>([\s\S]*?)<\/template>/);
-  
+
   if (!templateMatch) {
     return null;
   }
 
   const pugContent = templateMatch[1].trim();
-  
+
   // Remove common indentation
-  const lines = pugContent.split('\n');
-  const firstLineIndent = lines.find(line => line.trim())?.match(/^(\s*)/)?.[1]?.length || 0;
-  
+  const lines = pugContent.split("\n");
+  const firstLineIndent = lines.find((line) => line.trim())?.match(/^(\s*)/)?.[1]?.length || 0;
+
   if (firstLineIndent > 0) {
-    const dedentedLines = lines.map(line => 
+    const dedentedLines = lines.map((line) =>
       line.length >= firstLineIndent ? line.slice(firstLineIndent) : line
     );
-    return dedentedLines.join('\n');
+    return dedentedLines.join("\n");
   }
 
   return pugContent;
@@ -42,19 +42,19 @@ export function extractPugTemplate(content) {
 
 export function replaceTemplate(content, htmlTemplate) {
   const templateMatch = content.match(/<template\s+lang=["']pug["']>([\s\S]*?)<\/template>/);
-  
+
   if (!templateMatch) {
     return content;
   }
 
   // Format HTML with proper indentation for Vue template
   const formattedHtml = htmlTemplate
-    .split('\n')
-    .map(line => line ? `  ${line}` : line)
-    .join('\n');
+    .split("\n")
+    .map((line) => (line ? `  ${line}` : line))
+    .join("\n");
 
   const newTemplate = `<template>\n${formattedHtml}\n</template>`;
-  
+
   return content.replace(templateMatch[0], newTemplate);
 }
 

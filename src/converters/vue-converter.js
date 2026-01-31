@@ -1,11 +1,11 @@
-import { readFile, writeFile, copyFile, fileExists } from '../utils/file-utils.js';
-import { 
-  parseVueFile, 
-  hasPugTemplate, 
-  extractPugTemplate, 
-  replaceTemplate 
-} from '../utils/vue-parser.js';
-import { compilePugToHtml, validatePugCode } from './pug-processor.js';
+import { readFile, writeFile, copyFile, fileExists } from "../utils/file-utils.js";
+import {
+  parseVueFile,
+  hasPugTemplate,
+  extractPugTemplate,
+  replaceTemplate,
+} from "../utils/vue-parser.js";
+import { compilePugToHtml, validatePugCode } from "./pug-processor.js";
 
 export class VueConverter {
   constructor(options = {}) {
@@ -14,7 +14,7 @@ export class VueConverter {
       dryRun: false,
       output: null,
       verbose: false,
-      ...options
+      ...options,
     };
   }
 
@@ -22,19 +22,19 @@ export class VueConverter {
     try {
       // Read file
       const content = await readFile(filePath);
-      
+
       // Check if file has Pug template
       if (!hasPugTemplate(content)) {
         if (this.options.verbose) {
           console.log(`Skipping ${filePath}: No Pug template found`);
         }
-        return { success: true, converted: false, reason: 'No Pug template' };
+        return { success: true, converted: false, reason: "No Pug template" };
       }
 
       // Extract Pug template
       const pugCode = extractPugTemplate(content);
       if (!pugCode) {
-        return { success: false, error: 'Failed to extract Pug template' };
+        return { success: false, error: "Failed to extract Pug template" };
       }
 
       // Validate Pug code
@@ -46,7 +46,7 @@ export class VueConverter {
       // Convert Pug to HTML
       const htmlTemplate = compilePugToHtml(pugCode, {
         pretty: true,
-        doctype: 'html'
+        doctype: "html",
       });
 
       // Replace template in file
@@ -69,17 +69,16 @@ export class VueConverter {
       }
 
       if (this.options.verbose) {
-        console.log(`Converted ${filePath} ${this.options.dryRun ? '(dry run)' : ''}`);
+        console.log(`Converted ${filePath} ${this.options.dryRun ? "(dry run)" : ""}`);
       }
 
-      return { 
-        success: true, 
-        converted: true, 
+      return {
+        success: true,
+        converted: true,
         inputPath: filePath,
         outputPath: outputPath,
-        dryRun: this.options.dryRun
+        dryRun: this.options.dryRun,
       };
-
     } catch (error) {
       return { success: false, error: error.message, inputPath: filePath };
     }
@@ -87,11 +86,11 @@ export class VueConverter {
 
   async convertMultipleFiles(filePaths) {
     const results = [];
-    
+
     for (const filePath of filePaths) {
       const result = await this.convertVueFile(filePath);
       results.push(result);
-      
+
       if (!result.success && this.options.verbose) {
         console.error(`Error converting ${filePath}: ${result.error}`);
       }
@@ -101,17 +100,17 @@ export class VueConverter {
   }
 
   getStats(results) {
-    const successful = results.filter(r => r.success).length;
-    const converted = results.filter(r => r.converted).length;
-    const failed = results.filter(r => !r.success).length;
-    const skipped = results.filter(r => r.success && !r.converted).length;
+    const successful = results.filter((r) => r.success).length;
+    const converted = results.filter((r) => r.converted).length;
+    const failed = results.filter((r) => !r.success).length;
+    const skipped = results.filter((r) => r.success && !r.converted).length;
 
     return {
       total: results.length,
       successful,
       converted,
       failed,
-      skipped
+      skipped,
     };
   }
 }
