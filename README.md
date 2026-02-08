@@ -5,13 +5,13 @@ A Node.js tool for automatically converting Pug templates in Vue Single File Com
 ## Installation
 
 ```bash
-npm install -g pug-to-html
+pnpm install -g pug-to-html
 ```
 
 Or use locally in your project:
 
 ```bash
-npm install pug-to-html
+pnpm install pug-to-html
 npx pug-to-html
 ```
 
@@ -56,28 +56,30 @@ pug-to-html --help
 
 ## Options
 
-| Option | Description |
-|--------|-------------|
+| Option                       | Description                                         |
+| ---------------------------- | --------------------------------------------------- |
 | `-i, --ignore <patterns...>` | Ignore patterns (default: node_modules, .git, dist) |
-| `-d, --dry-run` | Show what would be converted without making changes |
-| `-b, --backup` | Create backup files before converting |
-| `-o, --output <dir>` | Output directory (default: overwrite files) |
-| `-v, --verbose` | Verbose output |
-| `--no-recursive` | Disable recursive search |
+| `-d, --dry-run`              | Show what would be converted without making changes |
+| `-b, --backup`               | Create backup files before converting               |
+| `-o, --output <dir>`         | Output directory (default: overwrite files)         |
+| `-v, --verbose`              | Verbose output                                      |
+| `--no-recursive`             | Disable recursive search                            |
 
 ## Example
 
 Before conversion:
+
 ```vue
 <template lang="pug">
-  .container
-    h1 {{ title }}
-    button(@click="increment") Click me
-    div(v-if="showContent" :class="{ active: isActive }") Content
+.container
+  h1 {{ title }}
+  button(@click="increment") Click me
+  div(v-if="showContent", :class="{ active: isActive }") Content
 </template>
 ```
 
 After conversion:
+
 ```vue
 <template>
   <div class="container">
