@@ -6,7 +6,7 @@ import path from "node:path"
 import { fileURLToPath } from "node:url"
 import { scanProject } from "./scanner.js"
 import { VueConverter } from "./converters/vue-converter.js"
-import { fileExists } from "./utils/file-utils.js"
+import { fileExists } from "./utils/file-utilities.js"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -23,10 +23,7 @@ program
     "**/.git/**",
     "**/dist/**",
   ])
-  .option(
-    "-d, --dry-run",
-    "Show what would be converted without making changes",
-  )
+  .option("-d, --dry-run", "Show what would be converted without making changes")
   .option("-b, --backup", "Create backup files before converting")
   .option("-o, --output <dir>", "Output directory (default: overwrite files)")
   .option("-v, --verbose", "Verbose output")
@@ -56,7 +53,9 @@ program
       console.log(chalk.green(`Found ${vueFiles.length} Vue file(s)`))
 
       if (options.verbose) {
-        vueFiles.forEach(file => console.log(`  - ${file}`))
+        for (const file of vueFiles) {
+          console.log(`  - ${file}`)
+        }
       }
 
       // Create converter
@@ -84,11 +83,10 @@ program
 
         if (options.verbose) {
           console.log("\n" + chalk.red("Failed files:"))
-          results
-            .filter(r => !r.success)
-            .forEach(result => {
-              console.log(`  ${result.inputPath}: ${result.error}`)
-            })
+          results.filter(r => !r.success)
+          for (const result of results) {
+            console.log(`  ${result.inputPath}: ${result.error}`)
+          }
         }
       }
 

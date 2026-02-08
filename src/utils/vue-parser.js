@@ -4,12 +4,12 @@ export function parseVueFile(content) {
   const styleMatch = content.match(/<style[^>]*>([\s\S]*?)<\/style>/)
 
   return {
-    template: templateMatch ? templateMatch[0] : null,
-    templateContent: templateMatch ? templateMatch[1].trim() : null,
-    script: scriptMatch ? scriptMatch[0] : null,
-    scriptContent: scriptMatch ? scriptMatch[1].trim() : null,
-    style: styleMatch ? styleMatch[0] : null,
-    styleContent: styleMatch ? styleMatch[1].trim() : null,
+    template: templateMatch ? templateMatch[0] : undefined,
+    templateContent: templateMatch ? templateMatch[1].trim() : undefined,
+    script: scriptMatch ? scriptMatch[0] : undefined,
+    scriptContent: scriptMatch ? scriptMatch[1].trim() : undefined,
+    style: styleMatch ? styleMatch[0] : undefined,
+    styleContent: styleMatch ? styleMatch[1].trim() : undefined,
   }
 }
 
@@ -18,20 +18,17 @@ export function hasPugTemplate(content) {
 }
 
 export function extractPugTemplate(content) {
-  const templateMatch = content.match(
-    /<template\s+lang=["']pug["']>([\s\S]*?)<\/template>/,
-  )
+  const templateMatch = content.match(/<template\s+lang=["']pug["']>([\s\S]*?)<\/template>/)
 
   if (!templateMatch) {
-    return null
+    return
   }
 
   const pugContent = templateMatch[1].trim()
 
   // Remove common indentation
   const lines = pugContent.split("\n")
-  const firstLineIndent =
-    lines.find(line => line.trim())?.match(/^(\s*)/)?.[1]?.length || 0
+  const firstLineIndent = lines.find(line => line.trim())?.match(/^(\s*)/)?.[1]?.length || 0
 
   if (firstLineIndent > 0) {
     const dedentedLines = lines.map(line =>
@@ -44,9 +41,7 @@ export function extractPugTemplate(content) {
 }
 
 export function replaceTemplate(content, htmlTemplate) {
-  const templateMatch = content.match(
-    /<template\s+lang=["']pug["']>([\s\S]*?)<\/template>/,
-  )
+  const templateMatch = content.match(/<template\s+lang=["']pug["']>([\s\S]*?)<\/template>/)
 
   if (!templateMatch) {
     return content

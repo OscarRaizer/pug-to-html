@@ -1,9 +1,4 @@
-import {
-  readFile,
-  writeFile,
-  copyFile,
-  fileExists,
-} from "../utils/file-utils.js"
+import { readFile, writeFile, copyFile, fileExists } from "../utils/file-utilities.js"
 import {
   parseVueFile,
   hasPugTemplate,
@@ -17,7 +12,7 @@ export class VueConverter {
     this.options = {
       backup: false,
       dryRun: false,
-      output: null,
+      output: undefined,
       verbose: false,
       ...options,
     }
@@ -76,9 +71,7 @@ export class VueConverter {
       }
 
       if (this.options.verbose) {
-        console.log(
-          `Converted ${filePath} ${this.options.dryRun ? "(dry run)" : ""}`,
-        )
+        console.log(`Converted ${filePath} ${this.options.dryRun ? "(dry run)" : ""}`)
       }
 
       return {

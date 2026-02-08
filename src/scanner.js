@@ -12,17 +12,11 @@ const DEFAULT_IGNORE_PATTERNS = [
 ]
 
 export async function scanProject(rootPath, options = {}) {
-  const {
-    ignore = DEFAULT_IGNORE_PATTERNS,
-    recursive = true,
-    include = ["**/*.vue"],
-  } = options
+  const { ignore = DEFAULT_IGNORE_PATTERNS, recursive = true, include = ["**/*.vue"] } = options
 
   const patterns = include.map(pattern => {
     const fullPattern = path.join(rootPath, pattern)
-    return recursive
-      ? fullPattern
-      : path.join(rootPath, "/*", path.basename(pattern))
+    return recursive ? fullPattern : path.join(rootPath, "/*", path.basename(pattern))
   })
 
   try {

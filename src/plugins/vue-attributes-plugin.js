@@ -13,16 +13,16 @@ export default function createVueAttributesPlugin() {
     postParse(ast, options) {
       walk(ast, (node, replace) => {
         if (node.type === "Tag" && node.attrs && node.attrs.length > 0) {
-          node.attrs = node.attrs.map(attr => {
-            const name = attr.name
+          node.attrs = node.attrs.map(attribute => {
+            const name = attribute.name
 
             // Check if this is a Vue attribute
             if (isVueAttribute(name)) {
               // Don't escape Vue attribute values - they contain JavaScript expressions
-              attr.mustEscape = false
+              attribute.mustEscape = false
             }
 
-            return attr
+            return attribute
           })
         }
       })
@@ -31,12 +31,12 @@ export default function createVueAttributesPlugin() {
   }
 }
 
-function isVueAttribute(attrName) {
+function isVueAttribute(attributeName) {
   return (
-    VUE_ATTR_PATTERNS.bind.test(attrName) ||
-    VUE_ATTR_PATTERNS.on.test(attrName) ||
-    VUE_ATTR_PATTERNS.slot.test(attrName) ||
-    VUE_ATTR_PATTERNS.directive.test(attrName) ||
-    VUE_ATTR_PATTERNS.shorthand.test(attrName)
+    VUE_ATTR_PATTERNS.bind.test(attributeName) ||
+    VUE_ATTR_PATTERNS.on.test(attributeName) ||
+    VUE_ATTR_PATTERNS.slot.test(attributeName) ||
+    VUE_ATTR_PATTERNS.directive.test(attributeName) ||
+    VUE_ATTR_PATTERNS.shorthand.test(attributeName)
   )
 }

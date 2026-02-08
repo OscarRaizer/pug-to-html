@@ -19,7 +19,7 @@ export function compilePugToHtml(pugCode, options = {}) {
 export function validatePugCode(pugCode) {
   try {
     pug.compile(pugCode, { doctype: "html" })
-    return { valid: true, error: null }
+    return { valid: true, error: undefined }
   } catch (error) {
     return { valid: false, error: error.message }
   }
