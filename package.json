@@ -10,6 +10,7 @@
   "author": "",
   "license": "MIT",
   "scripts": {
+    "lint": "eslint -c ./eslint.config.mjs \"./src*/**/*.{js,cjs,mjs,vue}\"",
     "format": "prettier --write --cache .",
     "format-check": "prettier --check --cache ."
   },
@@ -28,7 +29,9 @@
     "eslint-plugin-prettier": "5.5.4",
     "eslint-plugin-promise": "7.2.1",
     "eslint-plugin-unicorn": "62.0.0",
+    "eslint-plugin-vue": "^10.7.0",
     "mocha": "^11.7.5",
-    "prettier": "3.7.4"
+    "prettier": "3.7.4",
+    "vue-eslint-parser": "^10.2.0"
   }
 }
