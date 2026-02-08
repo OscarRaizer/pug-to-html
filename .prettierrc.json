@@ -1,4 +1,7 @@
 {
+  "plugins": ["@prettier/plugin-pug"],
+  "semi": false,
   "printWidth": 100,
-  "trailingComma": "es5"
+  "arrowParens": "avoid",
+  "pugSingleQuote": false
 }
