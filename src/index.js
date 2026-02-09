@@ -27,6 +27,7 @@ program
   .option("-b, --backup", "Create backup files before converting")
   .option("-o, --output <dir>", "Output directory (default: overwrite files)")
   .option("-v, --verbose", "Verbose output")
+  .option("-p, --pretty", "Format HTML output with indentation")
   .option("--no-recursive", "Disable recursive search")
   .action(async (scanPath, options) => {
     try {
@@ -63,6 +64,7 @@ program
         backup: options.backup,
         dryRun: options.dryRun,
         output: options.output,
+        pretty: options.pretty,
         verbose: options.verbose,
       })
 

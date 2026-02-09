@@ -13,6 +13,7 @@ export class VueConverter {
       backup: false,
       dryRun: false,
       output: undefined,
+      pretty: false,
       verbose: false,
       ...options,
     }
@@ -49,6 +50,7 @@ export class VueConverter {
       // Convert Pug to HTML
       const htmlTemplate = compilePugToHtml(pugCode, {
         doctype: "html",
+        pretty: this.options.pretty,
       })
 
       // Replace template in file
