@@ -24,6 +24,9 @@ pug-to-html
 # Convert specific directory
 pug-to-html src/components
 
+# Convert specific file
+pug-to-html src/components/component.vue
+
 # Convert with options
 pug-to-html . --backup --dry-run --verbose
 
