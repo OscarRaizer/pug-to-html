@@ -63,6 +63,7 @@ pug-to-html --help
 | `-b, --backup`               | Create backup files before converting               |
 | `-o, --output <dir>`         | Output directory (default: overwrite files)         |
 | `-v, --verbose`              | Verbose output                                      |
+| `-p, --pretty`               | Format HTML output with indentation                 |
 | `--no-recursive`             | Disable recursive search                            |
 
 ## Example
