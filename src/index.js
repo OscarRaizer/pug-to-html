@@ -3,13 +3,9 @@
 import { Command } from "commander"
 import chalk from "chalk"
 import path from "node:path"
-import { fileURLToPath } from "node:url"
-import { scanProject } from "./scanner.js"
+import { scanFiles } from "./scanner.js"
 import { VueConverter } from "./converters/vue-converter.js"
 import { fileExists } from "./utils/file-utilities.js"
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
 
 const program = new Command()
 
@@ -38,13 +34,28 @@ program
         process.exit(1)
       }
 
-      console.log(chalk.blue(`Scanning for Vue files in: ${absolutePath}`))
-
-      // Scan for Vue files
-      const vueFiles = await scanProject(absolutePath, {
+      const scanResult = await scanFiles(absolutePath, {
+        patterns: [".vue"],
         ignore: options.ignore,
         recursive: options.recursive,
       })
+
+      if (!scanResult.matched) {
+        if (scanResult.type === "file") {
+          console.error(chalk.red(`Error: File is not a Vue file: ${absolutePath}`))
+        } else {
+          console.log(chalk.yellow("No Vue files found"))
+        }
+        return
+      }
+
+      if (scanResult.type === "file") {
+        console.log(chalk.blue(`Processing Vue file: ${absolutePath}`))
+      } else {
+        console.log(chalk.blue(`Scanning for Vue files in: ${absolutePath}`))
+      }
+
+      const vueFiles = scanResult.files
 
       if (vueFiles.length === 0) {
         console.log(chalk.yellow("No Vue files found"))
@@ -59,7 +70,6 @@ program
         }
       }
 
-      // Create converter
       const converter = new VueConverter({
         backup: options.backup,
         dryRun: options.dryRun,
@@ -85,8 +95,7 @@ program
 
         if (options.verbose) {
           console.log("\n" + chalk.red("Failed files:"))
-          results.filter(r => !r.success)
-          for (const result of results) {
+          for (const result of results.filter(r => !r.success)) {
             console.log(`  ${result.inputPath}: ${result.error}`)
           }
         }
