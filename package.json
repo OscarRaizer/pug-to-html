@@ -10,7 +10,7 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint -c ./eslint.config.mjs \"./src*/**/*.{js,cjs,mjs,vue}\"",
+    "lint": "eslint -c ./eslint.config.mjs \"./src*/**/*.{js,cjs,mjs,vue}\" --ignore-pattern \"bin/**\"",
     "format": "prettier --write --cache .",
     "format-check": "prettier --check --cache ."
   },
