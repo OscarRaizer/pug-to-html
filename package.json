@@ -1,5 +1,25 @@
 {
-  "name": "pug-to-html",
+  "name": "pug-to-html-cli",
+  "description": "A Node.js tool for automatically converting Pug templates in Vue Single File Components to HTML.",
+  "keywords": [
+    "pug",
+    "vue",
+    "html",
+    "template",
+    "converter"
+  ],
+  "homepage": "https://github.com/OscarRaizer/pug-to-html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OscarRaizer/pug-to-html.git"
+  },
+  "files": [
+    "bin/",
+    "src/"
+  ],
+  "bugs": {
+    "url": "https://github.com/OscarRaizer/pug-to-html/issues"
+  },
   "version": "1.0.0",
   "main": "src/index.js",
   "bin": {
@@ -7,7 +27,7 @@
   },
   "type": "module",
   "sourceType": "module",
-  "author": "",
+  "author": "Alex Bolt",
   "license": "MIT",
   "scripts": {
     "lint": "eslint -c ./eslint.config.mjs \"./src*/**/*.{js,cjs,mjs,vue}\" --ignore-pattern \"bin/**\"",
