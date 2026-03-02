@@ -24,6 +24,9 @@ pug-to-html
 # Convert specific directory
 pug-to-html src/components
 
+# Convert specific file
+pug-to-html src/components/component.vue
+
 # Convert with options
 pug-to-html . --backup --dry-run --verbose
 
@@ -63,6 +66,7 @@ pug-to-html --help
 | `-b, --backup`               | Create backup files before converting               |
 | `-o, --output <dir>`         | Output directory (default: overwrite files)         |
 | `-v, --verbose`              | Verbose output                                      |
+| `-p, --pretty`               | Format HTML output with indentation                 |
 | `--no-recursive`             | Disable recursive search                            |
 
 ## Example
