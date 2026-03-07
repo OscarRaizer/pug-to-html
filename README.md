@@ -3,16 +3,11 @@
 A Node.js tool for automatically converting Pug templates in Vue Single File Components to HTML.
 
 ## Installation
+📦 NPM  
+https://www.npmjs.com/package/@alexbolt/pug-to-html-cli
 
 ```bash
-pnpm install -g pug-to-html
-```
-
-Or use locally in your project:
-
-```bash
-pnpm install pug-to-html
-npx pug-to-html
+pnpm add -g @alexbolt/pug-to-html-cli
 ```
 
 ## Usage
