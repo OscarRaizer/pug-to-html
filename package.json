@@ -1,34 +1,37 @@
 {
-  "name": "pug-to-html-cli",
+  "name": "@alexbolt/pug-to-html-cli",
+  "version": "1.0.0",
   "description": "A Node.js tool for automatically converting Pug templates in Vue Single File Components to HTML.",
   "keywords": [
     "pug",
     "vue",
+    "vue-sfc",
     "html",
-    "template",
-    "converter"
+    "converter",
+    "cli",
+    "pug-to-html",
+    "vue-template",
+    "vue-cli"
   ],
   "homepage": "https://github.com/OscarRaizer/pug-to-html",
+  "bugs": {
+    "url": "https://github.com/OscarRaizer/pug-to-html/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/OscarRaizer/pug-to-html.git"
+    "url": "git+https://github.com/OscarRaizer/pug-to-html.git"
+  },
+  "license": "MIT",
+  "author": "Alex Bolt",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "pug-to-html": "bin/pug-to-html"
   },
   "files": [
     "bin/",
     "src/"
   ],
-  "bugs": {
-    "url": "https://github.com/OscarRaizer/pug-to-html/issues"
-  },
-  "version": "1.0.0",
-  "main": "src/index.js",
-  "bin": {
-    "pug-to-html": "./bin/pug-to-html"
-  },
-  "type": "module",
-  "sourceType": "module",
-  "author": "Alex Bolt",
-  "license": "MIT",
   "scripts": {
     "lint": "eslint -c ./eslint.config.mjs \"./src*/**/*.{js,cjs,mjs,vue}\" --ignore-pattern \"bin/**\"",
     "format": "prettier --write --cache .",
@@ -53,5 +56,6 @@
     "mocha": "^11.7.5",
     "prettier": "3.7.4",
     "vue-eslint-parser": "^10.2.0"
-  }
+  },
+  "sourceType": "module"
 }
