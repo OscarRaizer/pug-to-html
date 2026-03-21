@@ -2,7 +2,7 @@
 
 ## Wiki
 
-[Open full documentation](https://github.com/OscarRaizer/pug-to-html/wiki)
+[Open Migration Guide](https://github.com/OscarRaizer/pug-to-html/wiki)
 
 ## Installation
 📦 NPM  
