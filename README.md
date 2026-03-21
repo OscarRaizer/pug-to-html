@@ -1,6 +1,8 @@
 # Pug to HTML Converter for Vue
 
-A Node.js tool for automatically converting Pug templates in Vue Single File Components to HTML.
+## Wiki
+
+[Open full documentation](https://github.com/OscarRaizer/pug-to-html/wiki)
 
 ## Installation
 📦 NPM  
